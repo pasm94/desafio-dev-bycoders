@@ -7,6 +7,8 @@ defmodule BackendWeb.Router do
 
   scope "/api", BackendWeb do
     pipe_through :api
+
+    post "/transaction", TransactionController, :upload_cnab_file
   end
 
   # Enables LiveDashboard only for development
