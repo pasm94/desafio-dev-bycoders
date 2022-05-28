@@ -5,7 +5,7 @@ defmodule BackendWeb.TransactionController do
   alias Backend.Transactions.Services.UploadCnabFile
 
   def get_by_store(conn, %{"store" => store}) do
-    data = GetByStore.call(store) |> IO.inspect()
+    data = GetByStore.call(store)
 
     conn
     |> put_status(:ok)
