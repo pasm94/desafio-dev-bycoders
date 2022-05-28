@@ -50,7 +50,10 @@ defmodule Backend.MixProject do
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
 
       # test coverage
-      {:excoveralls, "~> 0.14.4", only: :test}
+      {:excoveralls, "~> 0.14.4", only: :test},
+
+      # money interpretation
+      {:money, "~> 1.9"}
     ]
   end
 
