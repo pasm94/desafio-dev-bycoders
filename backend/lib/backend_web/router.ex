@@ -8,6 +8,8 @@ defmodule BackendWeb.Router do
   scope "/api", BackendWeb do
     pipe_through :api
 
+    get "/transaction/:store", TransactionController, :get_by_store
+
     post "/transaction", TransactionController, :upload_cnab_file
   end
 

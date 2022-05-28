@@ -1,7 +1,16 @@
 defmodule BackendWeb.TransactionController do
   use BackendWeb, :controller
 
+  alias Backend.Transactions.Services.GetByStore
   alias Backend.Transactions.Services.UploadCnabFile
+
+  def get_by_store(conn, %{"store" => store}) do
+    data = GetByStore.call(store) |> IO.inspect()
+
+    conn
+    |> put_status(:ok)
+    |> render("get_by_store.json", data: data)
+  end
 
   def upload_cnab_file(conn, %{"file" => %{path: file}}) do
     case UploadCnabFile.call(file) do
