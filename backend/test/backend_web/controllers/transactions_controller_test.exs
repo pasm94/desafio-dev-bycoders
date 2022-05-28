@@ -104,6 +104,20 @@ defmodule BackendWeb.TransactionsControllerTest do
 
       assert length(all) == 4
 
+      assert %Transaction{
+               card: "1234****7890",
+               cpf: "09620676017",
+               date: ~D[2019-03-01],
+               hour: ~T[23:30:00],
+               id: _,
+               inserted_at: _,
+               store: "BAR DO JOÃO",
+               store_owner: "JOÃO MACEDO",
+               type: 1,
+               updated_at: _,
+               value: %Money{amount: 1_520_000, currency: :BRL}
+             } = List.first(all)
+
       assert %{"message" => "File uploaded"} == response
     end
 
