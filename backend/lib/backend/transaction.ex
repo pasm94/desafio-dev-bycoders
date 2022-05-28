@@ -14,6 +14,8 @@ defmodule Backend.Transaction do
     field :store_owner, :string
     field :type, :integer
     field :value, Money.Ecto.Amount.Type
+
+    timestamps()
   end
 
   def changeset(struct \\ %__MODULE__{}, attrs) do

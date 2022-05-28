@@ -11,6 +11,8 @@ defmodule Backend.Repo.Migrations.CreateTransactionsTable do
       add :hour, :time, null: false
       add :store_owner, :string, null: false
       add :store, :string, null: false
+
+      timestamps()
     end
   end
 end
