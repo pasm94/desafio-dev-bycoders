@@ -1,0 +1,34 @@
+body {
+  background-color: #111211;
+  color: #e9f0e9;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.page {
+  display: flex;
+  align-items: center;
+
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 6rem;
+}
+
+.custom-file-upload {
+  background-color: #ff9900;
+  border-radius: 14px;
+  padding: 32px;
+  text-align: center;
+  font-size: 16px;
+  transition: filter 0.2s;
+  color: #111211;
+}
+
+.custom-file-upload:hover {
+  filter: brightness(0.8);
+}
+
+input[type="file"] {
+  display: none;
+}

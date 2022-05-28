@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="fileUpload.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+  <title>File Upload</title>
+</head>
+
+<body>
+  <div class="page">
+    <h1>File Upload</h1>
+    <div class="custom-file-upload">
+      <label for="fileInput">
+        Select the document
+        <input id="fileInput" name="fileInput" type="file" />
+      </label>
+    </div>
+  </div>
+
+  <script>
+    const fileInput = document.querySelector("[name='fileInput']");
+
+    const uploadFile = file => {
+      console.log("Uploading file...");
+      const API_ENDPOINT = "http://localhost:4000/api/transaction";
+      const request = new XMLHttpRequest();
+      const formData = new FormData();
+
+      request.open("POST", API_ENDPOINT, true);
+      request.onreadystatechange = () => {
+        if (request.readyState === 4 && request.status === 200) {
+          console.log(request.responseText);
+        }
+      };
+      formData.append("file", file);
+      request.send(formData);
+    };
+
+    fileInput.addEventListener("change", event => {
+      const files = event.target.files;
+      uploadFile(files[0]);
+
+      window.location.href = "transactions.html";
+    });
+
+      // PS: nessa parte fui prático, e peguei o código na internet
+  </script>
+</body>
+
+</html>
