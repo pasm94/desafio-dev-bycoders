@@ -60,7 +60,10 @@ defmodule Backend.MixProject do
       {:excoveralls, "~> 0.14.4", only: :test},
 
       # money interpretation
-      {:money, "~> 1.9"}
+      {:money, "~> 1.9"},
+
+      # cors
+      {:cors_plug, "~> 3.0"}
     ]
   end
 
