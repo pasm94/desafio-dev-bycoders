@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="transactions.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+  <title>Transactions</title>
+
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- CRIAR INPUT FIND BY COMPANIES E TABLE -->
+    <h1>Transactions</h1>
+    <div class="form">
+      <form action="#">
+        <!-- <label for="store">Store</label> -->
+        <select name="languages" id="store">
+          <option disabled value="" selected>Select the store</option>
+          <option value="BAR DO JOÃO">Bar do João</option>
+          <option value="LOJA DO Ó - MATRIZ">Loja do Ó - Matriz</option>
+          <option value="LOJA DO Ó - FILIAL">Loja do Ó - Filial</option>
+          <option value="MERCADO DA AVENIDA">Mercado da Avenida</option>
+          <option value="MERCEARIA 3 IRMÃOS">Mercearia 3 Irmãos</option>
+        </select>
+      </form>
+      <button value="Search" class="find">Search</button>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <table id="transactions">
+      <tr>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Value</th>
+        <th>Store</th>
+      </tr>
+    </table>
+
+    <br>
+
+    <h2 id="balance"></h2>
+  </div>
+
+  <script>
+    const url = "http://localhost:4000/api/transaction"
+
+    const findButton = document.querySelector('.find')
+
+    const table = document.querySelector('#transactions')
+
+    findButton.addEventListener("click", event => {
+      event.preventDefault()
+      const store = document.querySelector('#store').value
+
+      fetch(`${url}/${store}`).then(response => {
+        return response.json();
+      }).then(data => {
+        console.log(data.data);
+        fillTable(data.data)
+      }).catch(err => {
+        console.warn('Something went wrong.', err);
+      });
+    });
+
+    function fillTable(data) {
+      const balanceP = document.querySelector("#balance");
+      const tds = document.querySelectorAll("#transactions td");
+      if (tds) tds.forEach(td => td.remove())
+
+      data.transactions.forEach(transaction => {
+        const row = table.insertRow(-1)
+
+        const type = row.insertCell(0)
+        const date = row.insertCell(1)
+        const value = row.insertCell(2)
+        const store = row.insertCell(3)
+
+        type.innerHTML = transaction.type
+        date.innerHTML = transaction.date
+        value.innerHTML = transaction.value
+        store.innerHTML = transaction.store
+      })
+
+      balanceP.innerHTML = `The balance is ${data.amount}`
+
+
+    }
+  </script>
+</body>
+
+</html>
