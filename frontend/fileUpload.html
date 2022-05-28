@@ -40,13 +40,17 @@
       };
       formData.append("file", file);
       request.send(formData);
+
+      setTimeout(function () {
+        window.location.href = "transactions.html";
+      }, 1000)
+
     };
 
     fileInput.addEventListener("change", event => {
       const files = event.target.files;
       uploadFile(files[0]);
 
-      window.location.href = "transactions.html";
     });
 
       // PS: nessa parte fui prático, e peguei o código na internet
